@@ -1,18 +1,15 @@
-import React from 'react';
-import logo from './logo.svg';
-import Tab from './Tab';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "bootstrap/dist/css/bootstrap.css";
+import NavBar from "./components/NavBar";
+import ListGroup from "./components/ListGroup";
+import Header from "./components/Header";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-          <Tab/>
-      </header>
+        <Header/>
+        {/* <img src={logo} className="App-logo" alt="logo" /> */}
     </div>
   );
 }
