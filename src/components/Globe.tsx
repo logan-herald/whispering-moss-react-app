@@ -1,35 +1,37 @@
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import MapView from "@arcgis/core/views/SceneView";
-import WebMap from "@arcgis/core/WebMap";
+import Map from "@arcgis/core/Map";
+// ... import API call utility
 
-export default function Globe() {
+const GlobePage: React.FC = () => {
   const mapDiv = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (mapDiv.current) {
-      const webmap = new WebMap({
-        basemap: "oceans",
-      });
+    if (!mapDiv.current) return;
 
-      const view = new MapView({
-        container: mapDiv.current,
-        map: webmap,
-        center: [0, 20],
-        zoom: 2,
-      });
+    const map = new Map({ basemap: "satellite" });
+    const view = new MapView({
+      container: mapDiv.current,
+      map: map,
+      viewingMode: "global",
+      center: [0, 20],
+      zoom: 2,
+    });
 
-      view.on("click", (event) => {
-        view.hitTest(event).then((response) => {
-            console.log("ping")
-          //const country = response?.results?.[0]?.graphic?.attributes?.COUNTRY;
-          if (true) {
-            console.log("Selected country:", "country");
-            // Trigger species lookup here
-          }
-        });
-      });
-    }
+    view.on("click", async (event) => {
+      const lat = event.mapPoint.latitude;
+      const lng = event.mapPoint.longitude;
+      console.log("ping", lat, lng);
+      // Fetch plant species from backend
+      //const plants = await fetchPlants(lat, lng);
+      // Display plants (e.g., popup or sidebar)
+      // ...
+    });
+
+    return () => view.destroy();
   }, []);
 
-  return <div className="w-full h-[80vh]" ref={mapDiv}></div>;
-}
+  return <div ref={mapDiv} style={{ width: "100vw", height: "100vh" }} />;
+};
+
+export default GlobePage;
