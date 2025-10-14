@@ -1,13 +1,14 @@
 function NavBar() {
+
   return (
-    <ul className="nav justify-content-end">
-      <li className="nav-item">
-        <a className="nav-link active" href="#">
+    <ul className="list-group justify-content-end">
+      <li className="list-group-item ">
+        <a>
           Terraiums
         </a>
       </li>
-      <li className="nav-item">
-        <a className="nav-link active" href="#">
+      <li className="list-group-item ">
+        <a>
           Aquariums
         </a>
       </li>

@@ -1,15 +1,16 @@
 import React from "react";
-import logo from "./logo.svg";
+import logo from "./moss.png";
 import "bootstrap/dist/css/bootstrap.css";
 import NavBar from "./components/NavBar";
 import ListGroup from "./components/ListGroup";
 import Header from "./components/Header";
+import Globe from "./components/Globe";
 
 function App() {
   return (
     <div className="App">
-        <Header/>
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
+      <Header />
+      <Globe/>
     </div>
   );
 }
